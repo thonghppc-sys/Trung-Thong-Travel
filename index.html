@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trung Thông Travel - Menu Tương Tác</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        
+        .category-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .menu-item {
+            background: white;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .menu-item:hover {
+            border-left-color: #d97706;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .price-tag {
+            background: linear-gradient(45deg, #d97706, #f59e0b);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .add-btn {
+            background: linear-gradient(45deg, #059669, #10b981);
+            transition: all 0.2s ease;
+        }
+        
+        .add-btn:hover {
+            background: linear-gradient(45deg, #047857, #059669);
+            transform: scale(1.05);
+        }
+        
+        .cart-item {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .total-section {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-full font-body">
+    <header class="bg-gradient-to-r from-slate-800 to-slate-700 text-white py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="font-display text-4xl md:text-5xl font-bold mb-2">🚗 Trung Thông Travel</h1>
+            <p class="text-slate-300 text-lg font-light">Chuyên cung cấp phương tiện di chuyển chất lượng cao</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Menu Categories -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Car Seats -->
+                <section class="category-card rounded-2xl p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl mr-4">🪑</div>
+                        <div>
+                            <h2 class="font-display text-2xl font-bold text-slate-800">Ghế Ô Tô</h2>
+                            <p class="text-slate-600">An toàn và thoải mái cho mọi chuyến đi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Ghế Ô Tô Cao Cấp</h3>
+                                <p class="text-slate-600 text-sm">Ghế da thật, massage, điều hòa riêng</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">6.200K</span>
+                                <button onclick="addToCart('Ghế Ô Tô Cao Cấp', 6200)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Ghế Ô Tô Tiêu Chuẩn</h3>
+                                <p class="text-slate-600 text-sm">Ghế nỉ êm ái, tựa lưng điều chỉnh</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">5.000K</span>
+                                <button onclick="addToCart('Ghế Ô Tô Tiêu Chuẩn', 5000)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Ghế Ô Tô Phổ Thông</h3>
+                                <p class="text-slate-600 text-sm">Ghế cơ bản, thoải mái cho chuyến đi ngắn</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">4.000K</span>
+                                <button onclick="addToCart('Ghế Ô Tô Phổ Thông', 4000)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Strollers -->
+                <section class="category-card rounded-2xl p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-2xl mr-4">🛒</div>
+                        <div>
+                            <h2 class="font-display text-2xl font-bold text-slate-800">Xe Đẩy</h2>
+                            <p class="text-slate-600">Tiện lợi cho việc vận chuyển hành lý</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đẩy Cao Cấp</h3>
+                                <p class="text-slate-600 text-sm">4 bánh xoay 360°, khung nhôm siêu nhẹ</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">3.000K</span>
+                                <button onclick="addToCart('Xe Đẩy Cao Cấp', 3000)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đẩy Tiêu Chuẩn</h3>
+                                <p class="text-slate-600 text-sm">2 bánh cố định, chắc chắn và bền bỉ</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">2.500K</span>
+                                <button onclick="addToCart('Xe Đẩy Tiêu Chuẩn', 2500)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đẩy Phổ Thông</h3>
+                                <p class="text-slate-600 text-sm">Thiết kế đơn giản, phù hợp nhu cầu cơ bản</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">2.000K</span>
+                                <button onclick="addToCart('Xe Đẩy Phổ Thông', 2000)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bicycles -->
+                <section class="category-card rounded-2xl p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mr-4">🚲</div>
+                        <div>
+                            <h2 class="font-display text-2xl font-bold text-slate-800">Xe Đạp</h2>
+                            <p class="text-slate-600">Thân thiện môi trường và tốt cho sức khỏe</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đạp Thể Thao</h3>
+                                <p class="text-slate-600 text-sm">21 tốc độ, khung carbon siêu nhẹ</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">2.000K</span>
+                                <button onclick="addToCart('Xe Đạp Thể Thao', 2000)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đạp Địa Hình</h3>
+                                <p class="text-slate-600 text-sm">Bánh răng cưa, phù hợp mọi địa hình</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">1.800K</span>
+                                <button onclick="addToCart('Xe Đạp Địa Hình', 1800)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đạp Thường</h3>
+                                <p class="text-slate-600 text-sm">Thiết kế cổ điển, dễ sử dụng</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">1.200K</span>
+                                <button onclick="addToCart('Xe Đạp Thường', 1200)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item rounded-xl p-4 flex justify-between items-center">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-slate-800 mb-1">Xe Đạp Trẻ Em</h3>
+                                <p class="text-slate-600 text-sm">An toàn, màu sắc bắt mắt cho bé</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="price-tag">1.000K</span>
+                                <button onclick="addToCart('Xe Đạp Trẻ Em', 1000)" class="add-btn text-white px-4 py-2 rounded-lg text-sm font-medium">Chọn</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Cart Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-8">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-6">
+                            <h3 class="font-display text-xl font-bold flex items-center">
+                                🛒 Phương Tiện Đã Chọn
+                            </h3>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div id="cart-items" class="space-y-3 mb-6">
+                                <div class="text-center text-slate-500 py-8">
+                                    <div class="text-4xl mb-2">🚗</div>
+                                    <p>Chưa chọn phương tiện nào</p>
+                                </div>
+                            </div>
+                            
+                            <div id="cart-total" class="total-section rounded-xl p-4 text-center" style="display: none;">
+                                <div class="text-sm opacity-90 mb-1">Tổng cộng</div>
+                                <div class="text-2xl font-bold mb-3" id="total-amount">0K VNĐ</div>
+                                <div class="space-y-2">
+                                    <button onclick="purchaseItems()" class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors mb-2">
+                                        💳 Mua
+                                    </button>
+                                    <button onclick="clearCart()" class="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        🗑️ Xóa Tất Cả
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        // Cấu hình Google Sheets - Thay thế bằng URL Google Apps Script của bạn
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbx3M9xlAX0joncGJ6V6M21lOpf84TGt2chEKa_QWJHJz6FAFCM0yypBStukCCEkB3Hc/exec';
+
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price });
+            total += price;
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            total -= cart[index].price;
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function clearCart() {
+            cart = [];
+            total = 0;
+            updateCartDisplay();
+        }
+
+        async function purchaseItems() {
+            if (cart.length === 0) {
+                showMessage('Vui lòng chọn ít nhất một phương tiện!', 'error');
+                return;
+            }
+
+            try {
+                // Hiển thị loading
+                showMessage('Đang xử lý đơn hàng...', 'loading');
+
+                // Chuẩn bị dữ liệu gửi lên Google Sheets
+                const orderData = {
+                    timestamp: new Date().toLocaleString('vi-VN'),
+                    items: cart.map(item => `${item.name} (${item.price.toLocaleString()}K VNĐ)`).join(', '),
+                    total: `${total.toLocaleString()}K VNĐ`,
+                    itemCount: cart.length
+                };
+
+                // Gửi dữ liệu lên Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+                });
+
+                // Hiển thị thông báo thành công
+                showMessage('Đơn hàng đã được ghi nhận thành công!', 'success');
+                
+                // Xóa giỏ hàng sau khi mua thành công
+                setTimeout(() => {
+                    clearCart();
+                }, 2000);
+
+            } catch (error) {
+                console.error('Lỗi khi gửi dữ liệu:', error);
+                showMessage('Có lỗi xảy ra. Vui lòng thử lại!', 'error');
+            }
+        }
+
+        function showMessage(message, type) {
+            // Tạo thông báo toast
+            const toast = document.createElement('div');
+            toast.className = `fixed top-4 right-4 px-6 py-3 rounded-lg text-white font-medium z-50 transition-all duration-300 ${
+                type === 'success' ? 'bg-green-500' : 
+                type === 'error' ? 'bg-red-500' : 
+                'bg-blue-500'
+            }`;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            // Tự động xóa sau 3 giây
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const totalAmount = document.getElementById('total-amount');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center text-slate-500 py-8">
+                        <div class="text-4xl mb-2">🚗</div>
+                        <p>Chưa chọn phương tiện nào</p>
+                    </div>
+                `;
+                cartTotal.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item rounded-lg p-3 flex justify-between items-center">
+                        <div class="flex-1">
+                            <div class="font-medium text-slate-800 text-sm">${item.name}</div>
+                            <div class="text-amber-700 font-semibold">${item.price.toLocaleString()}K VNĐ</div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 ml-2">
+                            ✕
+                        </button>
+                    </div>
+                `).join('');
+                
+                cartTotal.style.display = 'block';
+                totalAmount.textContent = `${total.toLocaleString()}K VNĐ`;
+            }
+        }
+
+        // Load dữ liệu từ Google Sheets khi trang được tải (tùy chọn)
+        async function loadMenuFromSheets() {
+            try {
+                // Có thể thêm chức năng load menu từ Google Sheets ở đây
+                console.log('Có thể load menu từ Google Sheets');
+            } catch (error) {
+                console.error('Lỗi khi load dữ liệu từ Google Sheets:', error);
+            }
+        }
+
+        // Gọi khi trang được tải
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMenuFromSheets();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9935b8212639ce82',t:'MTc2MTI2OTUzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
